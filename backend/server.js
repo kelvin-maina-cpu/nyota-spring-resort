@@ -6,15 +6,32 @@ import { menuItems, orderStatuses } from "./menuData.js"
 
 const app = express()
 const port = process.env.PORT || 4000
+const defaultOrigins = [
+  "http://localhost:5173",
+  "http://127.0.0.1:5173",
+  "http://localhost:5174",
+  "http://127.0.0.1:5174",
+]
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(",").map((origin) => origin.trim()).filter(Boolean)
+  : defaultOrigins
 const server = http.createServer(app)
-const io = new Server(server, {
-  cors: {
-    origin: ["http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:5174", "http://127.0.0.1:5174"],
-    methods: ["GET", "POST"],
+const corsOptions = {
+  origin(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      return callback(null, true)
+    }
+
+    return callback(new Error("Origin not allowed by CORS"))
   },
+  methods: ["GET", "POST"],
+}
+const io = new Server(server, {
+  cors: corsOptions,
 })
 
-app.use(cors({ origin: ["http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:5174", "http://127.0.0.1:5174"] }))
+app.set("trust proxy", 1)
+app.use(cors(corsOptions))
 app.use(express.json())
 
 const orders = []
@@ -83,6 +100,30 @@ io.on("connection", (socket) => {
   })
 })
 
+app.get("/", (req, res) => {
+  res.json({
+    service: "nyota-backend",
+    status: "ok",
+    message: "Nyota backend is running.",
+  })
+})
+
+app.get("/health", (req, res) => {
+  res.json({
+    status: "ok",
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+  })
+})
+
+app.get("/api/health", (req, res) => {
+  res.json({
+    status: "ok",
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+  })
+})
+
 app.get("/api/menu", (req, res) => {
   res.json({ menu: menuItems })
 })
@@ -102,18 +143,24 @@ app.post("/api/orders", (req, res) => {
     return res.status(400).json({ error: "Order must include at least one menu item." })
   }
 
-  const orderItems = items.map((item) => {
-    const menuItem = menuItems.find((menu) => menu.id === item.id)
-    if (!menuItem) {
-      throw new Error(`Menu item not found: ${item.id}`)
-    }
+  let orderItems
 
-    return {
-      ...menuItem,
-      quantity: item.quantity || 1,
-      note: item.note || "",
-    }
-  })
+  try {
+    orderItems = items.map((item) => {
+      const menuItem = menuItems.find((menu) => menu.id === item.id)
+      if (!menuItem) {
+        throw new Error(`Menu item not found: ${item.id}`)
+      }
+
+      return {
+        ...menuItem,
+        quantity: item.quantity || 1,
+        note: item.note || "",
+      }
+    })
+  } catch (error) {
+    return res.status(400).json({ error: error.message })
+  }
 
   const totalPrice = orderItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
   const etaMinutes = getEstimatedPrepMinutes(orderItems)
@@ -194,5 +241,7 @@ app.use((req, res) => {
 })
 
 server.listen(port, () => {
-  console.log(`Nyota backend running on http://localhost:${port}`)
+  const publicUrl = process.env.RENDER_EXTERNAL_URL || `http://localhost:${port}`
+  console.log(`Nyota backend running on ${publicUrl}`)
+  console.log(`Allowed origins: ${allowedOrigins.join(", ")}`)
 })

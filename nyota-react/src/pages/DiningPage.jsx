@@ -4,6 +4,7 @@ import CartPanel from "../components/dining/CartPanel"
 import MealCard from "../components/dining/MealCard"
 import MealModal from "../components/dining/MealModal"
 import SectionTitle from "../components/SectionTitle"
+import { API_URL } from "../config"
 import { diningCategories, meals } from "../data/siteData"
 
 function formatMoney(value) {
@@ -143,7 +144,7 @@ export default function DiningPage() {
     setTableError("")
     setSubmitting(true)
     try {
-      const response = await fetch("http://localhost:4000/api/orders", {
+      const response = await fetch(`${API_URL}/api/orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

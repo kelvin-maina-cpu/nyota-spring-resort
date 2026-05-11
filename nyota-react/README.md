@@ -1,16 +1,43 @@
-# React + Vite
+# Nyota React Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This folder contains the Nyota frontend built with React and Vite.
 
-Currently, two official plugins are available:
+## Local Setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+1. Open a terminal in `nyota-react/`
+2. Run `npm install`
+3. Copy `.env.example` to `.env`
+4. Set `VITE_API_URL` to your backend URL
+5. Run `npm run dev`
 
-## React Compiler
+Example:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```env
+VITE_API_URL=http://localhost:4000
+```
 
-## Expanding the ESLint configuration
+## Build
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- `npm run build` - Create a production build in `dist/`
+- `npm run preview` - Preview the production build locally
+
+## Vercel Deployment
+
+This app is prepared for Vercel with `vercel.json`.
+
+Recommended Vercel settings:
+
+1. Import the repository into Vercel.
+2. Set the project Root Directory to `nyota-react`.
+3. Confirm the framework preset is `Vite`.
+4. Add `VITE_API_URL` as an environment variable and point it to your deployed Render backend, for example `https://your-backend.onrender.com`.
+5. Deploy.
+
+## Backend Connection
+
+The frontend reads the backend base URL from `VITE_API_URL`.
+
+- Local example: `http://localhost:4000`
+- Production example: `https://your-backend.onrender.com`
+
+Because the app uses `HashRouter`, client-side routes work on Vercel without extra rewrite rules.

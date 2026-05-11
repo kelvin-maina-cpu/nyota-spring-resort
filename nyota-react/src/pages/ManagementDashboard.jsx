@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom"
 import { io } from "socket.io-client"
 import { useAuth } from "../contexts/AuthContext"
 import SectionTitle from "../components/SectionTitle"
+import { API_URL } from "../config"
 
-const BACKEND_URL = "http://localhost:4000"
 const statusStyle = {
   Queued: "bg-amber-100 text-amber-800",
   Preparing: "bg-sky-100 text-sky-800",
@@ -88,7 +88,7 @@ export default function ManagementDashboard() {
   }, [user, navigate])
 
   useEffect(() => {
-    const socketClient = io(BACKEND_URL)
+    const socketClient = io(API_URL)
     setSocket(socketClient)
 
     socketClient.on("connect", () => {
@@ -115,7 +115,7 @@ export default function ManagementDashboard() {
   useEffect(() => {
     async function loadQueue() {
       try {
-        const response = await fetch(`${BACKEND_URL}/api/orders/queue`)
+        const response = await fetch(`${API_URL}/api/orders/queue`)
         const data = await response.json()
         setQueue(data)
       } catch (err) {
@@ -125,7 +125,7 @@ export default function ManagementDashboard() {
 
     async function loadStats() {
       try {
-        const response = await fetch(`${BACKEND_URL}/api/stats`)
+        const response = await fetch(`${API_URL}/api/stats`)
         const data = await response.json()
         setStats(data)
       } catch {
@@ -146,7 +146,7 @@ export default function ManagementDashboard() {
 
   async function updateOrder(orderId, endpoint) {
     try {
-      const response = await fetch(`${BACKEND_URL}/api/orders/${orderId}/${endpoint}`, { method: "POST" })
+      const response = await fetch(`${API_URL}/api/orders/${orderId}/${endpoint}`, { method: "POST" })
       if (!response.ok) throw new Error("Update failed")
       const data = await response.json()
       if (socket) {
