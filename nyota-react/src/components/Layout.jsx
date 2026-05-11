@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link, NavLink } from "react-router-dom"
+
 import { useAuth } from "../contexts/AuthContext"
 import { hotelCopy } from "../data/siteData"
 
@@ -14,21 +15,33 @@ const navItems = [
 
 export default function Layout({ children }) {
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [darkMode, setDarkMode] = useState(() => localStorage.getItem("nyota-theme") === "dark")
+  const [darkMode, setDarkMode] = useState(true)
   const { user, logout } = useAuth()
+
+  useEffect(() => {
+    const saved = localStorage.getItem("nyota-theme")
+    if (saved) {
+      const isDark = saved === "dark"
+      setDarkMode(isDark)
+      document.body.classList.toggle("dark", isDark)
+    }
+  }, [])
 
   useEffect(() => {
     document.body.classList.toggle("dark", darkMode)
     localStorage.setItem("nyota-theme", darkMode ? "dark" : "light")
   }, [darkMode])
 
+  const toggleTheme = () => setDarkMode(!darkMode)
+
   return (
+
     <div className="app-shell">
-      <header className="sticky top-0 z-40 border-b border-white/40 bg-white/70 backdrop-blur-xl dark:border-white/10 dark:bg-[#101914]/80">
+      <header className="sticky top-0 z-40 border-b border-white/20 bg-[#101914]/80 backdrop-blur-xl">
         <div className="section-wrap flex min-h-[84px] items-center justify-between gap-4">
           <div className="flex flex-col gap-0.5">
             <span className="brand-kicker">{hotelCopy.eyebrow}</span>
-            <Link to="/" className="text-2xl font-semibold text-nyota-forest dark:text-nyota-sand">
+            <Link to="/" className="text-2xl font-semibold text-nyota-sand">
               {hotelCopy.name}
             </Link>
           </div>
@@ -48,29 +61,29 @@ export default function Layout({ children }) {
             </Link>
             {user ? (
               user.role === "manager" ? (
-                <div className="ml-3 flex items-center gap-2 rounded-full border border-stone-200 bg-stone-100 px-4 py-2 text-sm text-stone-700 dark:border-white/10 dark:bg-white/10 dark:text-stone-100">
+                <div className="ml-3 flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm text-stone-100">
                   <span>{user.staffName}</span>
                   <span className="text-stone-400">•</span>
-                  <Link to="/dashboard" className="text-sm font-semibold text-nyota-forest dark:text-nyota-sand">
+                  <Link to="/dashboard" className="text-sm font-semibold text-nyota-sand">
                     Dashboard
                   </Link>
                   <button
                     type="button"
                     onClick={logout}
-                    className="rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-stone-700 transition hover:bg-stone-200 dark:bg-white/10 dark:text-stone-100 dark:hover:bg-white/20"
+                    className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-stone-100 hover:bg-white/20"
                   >
                     Logout
                   </button>
                 </div>
               ) : (
-                <div className="ml-3 flex items-center gap-2 rounded-full border border-stone-200 bg-stone-100 px-4 py-2 text-sm text-stone-700 dark:border-white/10 dark:bg-white/10 dark:text-stone-100">
+                <div className="ml-3 flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm text-stone-100">
                   <span>{user.guestName}</span>
                   <span className="text-stone-400">•</span>
-                  <span className="font-mono text-xs text-stone-500">{user.userId.slice(0, 12)}</span>
+                  <span className="font-mono text-xs text-stone-300">{user.userId.slice(0, 12)}</span>
                   <button
                     type="button"
                     onClick={logout}
-                    className="rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-stone-700 transition hover:bg-stone-200 dark:bg-white/10 dark:text-stone-100 dark:hover:bg-white/20"
+                    className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-stone-100 hover:bg-white/20"
                   >
                     Logout
                   </button>
@@ -86,20 +99,22 @@ export default function Layout({ children }) {
           <div className="flex items-center gap-3">
             <button
               type="button"
-              aria-label="Toggle dark mode"
-              onClick={() => setDarkMode((value) => !value)}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/50 bg-white/70 text-lg text-stone-700 shadow-nyota-soft transition hover:-translate-y-0.5 dark:border-white/10 dark:bg-white/5 dark:text-stone-100"
+              aria-label="Toggle theme"
+              onClick={toggleTheme}
+              className="mr-2 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-lg text-stone-100 shadow-nyota-soft hover:bg-white/20 lg:mr-4"
+              title="Toggle theme"
             >
-              {darkMode ? "☀" : "☾"}
+              {darkMode ? "☀️" : "🌙"}
             </button>
             <button
               type="button"
               aria-label="Toggle menu"
               onClick={() => setMobileOpen((value) => !value)}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/50 bg-white/70 text-lg text-stone-700 shadow-nyota-soft transition hover:-translate-y-0.5 dark:border-white/10 dark:bg-white/5 dark:text-stone-100 lg:hidden"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-lg text-stone-100 shadow-nyota-soft hover:-translate-y-0.5 lg:hidden"
             >
               {mobileOpen ? "×" : "☰"}
             </button>
+
           </div>
         </div>
 
@@ -111,10 +126,8 @@ export default function Layout({ children }) {
                 to={item.to}
                 onClick={() => setMobileOpen(false)}
                 className={({ isActive }) =>
-                  `rounded-2xl px-4 py-3 font-sans-body text-sm font-medium ${
-                    isActive
-                      ? "bg-nyota-forest text-white dark:bg-nyota-gold dark:text-stone-950"
-                      : "glass-surface text-stone-700 dark:text-stone-100"
+                  `rounded-2xl px-4 py-3 font-sans-body text-sm font-medium text-stone-100 ${
+                    isActive ? "bg-nyota-gold" : "bg-white/10"
                   }`
                 }
               >
@@ -130,7 +143,7 @@ export default function Layout({ children }) {
                   <Link
                     to="/dashboard"
                     onClick={() => setMobileOpen(false)}
-                    className="rounded-2xl bg-stone-100 px-4 py-3 text-center font-sans-body text-sm font-medium text-stone-700 dark:bg-white/10 dark:text-stone-100"
+                    className="rounded-2xl bg-white/10 px-4 py-3 text-center font-sans-body text-sm font-medium text-stone-100"
                   >
                     Dashboard
                   </Link>
@@ -174,3 +187,4 @@ export default function Layout({ children }) {
     </div>
   )
 }
+

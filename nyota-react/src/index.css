@@ -10,7 +10,7 @@
   --color-nyota-ink: #1f241f;
   --shadow-nyota: 0 24px 60px rgba(18, 34, 28, 0.12);
   --shadow-nyota-soft: 0 14px 36px rgba(18, 34, 28, 0.08);
-  --font-serif-display: Georgia, "Times New Roman", serif;
+  --font-serif-display: Georgia, \"Times New Roman\", serif;
   --font-sans-body: Arial, Helvetica, sans-serif;
 }
 
@@ -52,7 +52,7 @@
 
   .app-shell::before,
   .app-shell::after {
-    content: "";
+    content: \"\";
     @apply pointer-events-none fixed -z-10 h-96 w-96 rounded-full blur-3xl;
   }
 
@@ -113,6 +113,15 @@
   }
 
   .status-unavailable {
-    @apply bg-rose-100 text-rose-800 ring-1 ring-rose-200 dark:bg-rose-500/15 dark:text-rose-100 dark:ring-rose-400/20;
+    @apply bg-rose-100 text-rose-800 ring-1 ring-rose-200 dark:bg-rose-500/15 dark:text-rose-200 dark:ring-rose-400/20;
+  }
+
+  .text-body {
+    @apply text-stone-700 dark:text-stone-200;
+  }
+
+  .text-muted {
+    @apply text-stone-500 dark:text-stone-300;
   }
 }
+

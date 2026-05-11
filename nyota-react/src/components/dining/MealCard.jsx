@@ -32,7 +32,7 @@ export default function MealCard({ meal, onSelect, onUnavailable }) {
         <img
           src={meal.image}
           alt={meal.name}
-          className={`h-full w-full object-cover transition duration-500 ${disabled ? "grayscale opacity-75" : "group-hover:scale-105"}`}
+          className="h-full w-full image-primary transition duration-500 group-hover:scale-105"
         />
         <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/60 to-transparent" />
         <div className="absolute left-4 top-4 flex flex-wrap gap-2">
@@ -53,17 +53,17 @@ export default function MealCard({ meal, onSelect, onUnavailable }) {
       </div>
 
       <div className="space-y-4 p-5">
-        <p className="min-h-[76px] font-sans-body text-sm leading-7 text-stone-600 dark:text-stone-300">
+        <p className="min-h-[76px] font-sans-body text-sm leading-7 text-high-contrast-secondary">
           {meal.description}
         </p>
 
         <div className="flex items-start justify-between gap-4">
-          <div className="flex items-center gap-2 font-sans-body text-sm text-stone-500 dark:text-stone-300">
+          <div className="flex items-center gap-2 font-sans-body text-sm text-high-contrast-muted">
             <span className="text-amber-400">{renderStars(meal.rating)}</span>
             <span>{meal.rating.toFixed(1)}</span>
           </div>
           <div className="text-right">
-            <p className="font-sans-body text-[11px] uppercase tracking-[0.22em] text-stone-500 dark:text-stone-400">
+            <p className="font-sans-body text-[11px] uppercase tracking-[0.22em] text-high-contrast-muted">
               From
             </p>
             <strong className="mt-1 block text-xl font-semibold text-nyota-forest dark:text-nyota-sand">
