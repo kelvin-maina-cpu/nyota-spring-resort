@@ -23,7 +23,7 @@ export default function HomePage() {
           </div>
           <div className="relative z-10 flex h-full max-w-3xl flex-col justify-end">
             <p className="brand-kicker text-white/75">Refined hospitality retreat</p>
-            <h1 className="mt-4 max-w-[10ch] text-5xl font-semibold leading-[0.92] sm:text-7xl">
+            <h1 className="mt-4 max-w-[10ch] text-4xl font-semibold leading-[0.96] sm:text-6xl lg:text-7xl">
               Where quiet luxury meets water, light, and landscape.
             </h1>
             <p className="mt-5 max-w-2xl font-sans-body text-sm leading-8 text-white/82 sm:text-base">
@@ -103,7 +103,7 @@ export default function HomePage() {
         </div>
         <div className="info-card flex flex-col justify-center">
           <p className="brand-kicker">Resort Story</p>
-          <h2 className="mt-3 text-4xl font-semibold text-nyota-forest dark:text-nyota-sand">A destination defined by warmth and character.</h2>
+          <h2 className="mt-3 text-3xl font-semibold leading-tight text-nyota-forest dark:text-nyota-sand sm:text-4xl">A destination defined by warmth and character.</h2>
           <p className="mt-5 max-w-2xl font-sans-body text-sm leading-8 text-stone-600 dark:text-stone-300 sm:text-base">
             The resort experience moves naturally from elegant arrival moments to poolside ease, peaceful
             garden settings, and interiors created for rest, comfort, and private celebration.
@@ -131,7 +131,7 @@ export default function HomePage() {
       <section className="section-wrap mt-16 grid gap-6 lg:grid-cols-[1fr,0.95fr]">
         <div className="info-card flex flex-col justify-center">
           <p className="brand-kicker">Resort Dining</p>
-          <h2 className="mt-3 text-4xl font-semibold text-nyota-forest dark:text-nyota-sand">
+          <h2 className="mt-3 text-3xl font-semibold leading-tight text-nyota-forest dark:text-nyota-sand sm:text-4xl">
             Enjoy guest favorites prepared for every appetite.
           </h2>
           <p className="mt-5 max-w-2xl font-sans-body text-sm leading-8 text-stone-600 dark:text-stone-300 sm:text-base">

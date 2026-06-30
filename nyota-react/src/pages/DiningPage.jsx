@@ -187,7 +187,7 @@ export default function DiningPage() {
             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
               <div>
                 <p className="brand-kicker">Order placed</p>
-                <h2 className="mt-2 text-3xl font-semibold text-nyota-forest dark:text-nyota-sand">
+                <h2 className="mt-2 text-3xl font-semibold leading-tight text-nyota-forest dark:text-nyota-sand">
                   Order #{orderConfirmation.orderNumber} confirmed
                 </h2>
                 <p className="mt-3 max-w-3xl font-sans-body text-sm leading-7 text-stone-600 dark:text-stone-300">
@@ -196,7 +196,7 @@ export default function DiningPage() {
               </div>
               <div className="rounded-[28px] bg-nyota-forest px-5 py-4 text-white dark:bg-emerald-900">
                 <p className="text-sm uppercase tracking-[0.2em] text-white/90">Estimated ready time</p>
-                <p className="mt-2 text-3xl font-semibold">{orderConfirmation.etaMinutes} min</p>
+                <p className="mt-2 text-3xl font-semibold leading-tight">{orderConfirmation.etaMinutes} min</p>
               </div>
             </div>
 
@@ -266,7 +266,7 @@ export default function DiningPage() {
           </div>
           <div className="relative z-10 flex h-full max-w-3xl flex-col justify-end">
             <p className="brand-kicker text-white/75">Five-star dining collection</p>
-            <h1 className="mt-4 max-w-[11ch] text-5xl font-semibold leading-[0.92] sm:text-7xl">
+            <h1 className="mt-4 max-w-[11ch] text-4xl font-semibold leading-[0.96] sm:text-6xl lg:text-7xl">
               Order premium resort dining with calm, polished ease.
             </h1>
             <p className="mt-5 max-w-2xl font-sans-body text-sm leading-8 text-white/82 sm:text-base">
@@ -285,9 +285,9 @@ export default function DiningPage() {
         <div className="grid gap-4">
           <div className="glass-surface overflow-hidden bg-[linear-gradient(140deg,rgba(20,57,47,0.88),rgba(33,73,61,0.76)),url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center p-6 text-white">
             <p className="brand-kicker text-white/75">Chef&apos;s Special</p>
-            <h2 className="mt-3 text-4xl font-semibold">{chefSpecial.name}</h2>
+            <h2 className="mt-3 text-3xl font-semibold leading-tight sm:text-4xl">{chefSpecial.name}</h2>
             <p className="mt-4 max-w-xl font-sans-body text-sm leading-8 text-white/80">{chefSpecial.description}</p>
-            <div className="mt-6 flex items-center justify-between gap-4">
+            <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="font-sans-body text-xs uppercase tracking-[0.22em] text-white/70">{chefSpecial.waitTime}</p>
                 <strong className="mt-2 block text-3xl">{formatMoney(chefSpecial.price)}</strong>
@@ -350,7 +350,7 @@ export default function DiningPage() {
                 ))}
               </div>
 
-              <label className="relative block min-w-[280px] flex-1 lg:max-w-sm">
+              <label className="relative block w-full flex-1 sm:min-w-[280px] lg:max-w-sm">
                 <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-stone-400">⌕</span>
                 <input
                   type="search"

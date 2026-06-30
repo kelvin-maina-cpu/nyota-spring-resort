@@ -7,7 +7,7 @@ export default function AboutPage() {
       <section className="section-wrap pt-6">
         <div className="glass-surface overflow-hidden bg-[linear-gradient(135deg,rgba(13,32,28,0.86),rgba(113,70,28,0.52)),url('/images/Sarova 1.avif')] bg-cover bg-center p-8 text-white sm:p-10">
           <p className="brand-kicker text-white/75">About the resort</p>
-          <h1 className="mt-4 max-w-4xl text-5xl font-semibold leading-[0.95] sm:text-6xl">
+          <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-tight sm:text-6xl">
             Designed around calm luxury and memorable arrival moments.
           </h1>
           <p className="mt-5 max-w-3xl font-sans-body text-sm leading-8 text-white/80 sm:text-base">
@@ -20,7 +20,7 @@ export default function AboutPage() {
       <section className="section-wrap mt-16 grid gap-6 lg:grid-cols-[1fr,1fr]">
         <div className="info-card">
           <p className="brand-kicker">Our Story</p>
-          <h2 className="mt-3 text-4xl font-semibold text-nyota-forest dark:text-nyota-sand">
+          <h2 className="mt-3 text-3xl font-semibold leading-tight text-nyota-forest dark:text-nyota-sand sm:text-4xl">
             Hospitality with warmth, space, and visual character.
           </h2>
           <p className="mt-5 font-sans-body text-sm leading-8 text-stone-600 dark:text-stone-300 sm:text-base">
@@ -64,7 +64,7 @@ export default function AboutPage() {
         </div>
         <div className="info-card flex flex-col justify-center">
           <p className="brand-kicker">Evening Atmosphere</p>
-          <h2 className="mt-3 text-4xl font-semibold text-nyota-forest dark:text-nyota-sand">
+          <h2 className="mt-3 text-3xl font-semibold leading-tight text-nyota-forest dark:text-nyota-sand sm:text-4xl">
             A resort that still feels welcoming after sunset.
           </h2>
           <p className="mt-5 font-sans-body text-sm leading-8 text-stone-600 dark:text-stone-300 sm:text-base">

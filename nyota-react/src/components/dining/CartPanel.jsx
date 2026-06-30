@@ -8,11 +8,11 @@ export default function CartPanel({ cart, total, tableNumber, tableError, onTabl
   const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0)
 
   return (
-    <aside className="glass-surface sticky top-28 p-6">
+    <aside className="glass-surface p-5 sm:p-6 xl:sticky xl:top-28">
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="brand-kicker">Your Order</p>
-          <h3 className="mt-2 text-3xl font-semibold text-nyota-forest dark:text-nyota-sand">
+          <h3 className="mt-2 text-2xl font-semibold text-nyota-forest dark:text-nyota-sand sm:text-3xl">
             Cart Summary
           </h3>
         </div>
@@ -20,7 +20,7 @@ export default function CartPanel({ cart, total, tableNumber, tableError, onTabl
           key={itemCount}
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          className="inline-flex min-h-[54px] min-w-[54px] items-center justify-center rounded-full bg-nyota-forest px-4 font-sans-body text-lg font-semibold text-white shadow-nyota-soft dark:bg-nyota-gold dark:text-stone-950"
+          className="inline-flex min-h-[48px] min-w-[48px] items-center justify-center rounded-full bg-nyota-forest px-4 font-sans-body text-lg font-semibold text-white shadow-nyota-soft dark:bg-nyota-gold dark:text-stone-950 sm:min-h-[54px] sm:min-w-[54px]"
         >
           {itemCount}
         </motion.div>
@@ -34,7 +34,7 @@ export default function CartPanel({ cart, total, tableNumber, tableError, onTabl
         <div className="mt-6 max-h-[420px] space-y-3 overflow-y-auto pr-2">
           {cart.map((item) => (
             <div key={item.key} className="rounded-[24px] border border-stone-200 bg-stone-50/90 p-4 dark:border-white/10 dark:bg-white/5">
-              <div className="flex items-start justify-between gap-4">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                 <div>
                   <h4 className="text-lg font-semibold text-nyota-forest dark:text-nyota-sand">
                     {item.name}
@@ -68,11 +68,11 @@ export default function CartPanel({ cart, total, tableNumber, tableError, onTabl
       )}
 
           <div className="mt-6 rounded-[26px] bg-nyota-forest px-5 py-5 text-white dark:bg-gradient-to-r dark:from-nyota-gold dark:to-[#d7b279] dark:text-stone-950">
-        <div className="flex items-center justify-between gap-4 font-sans-body text-xs uppercase tracking-[0.22em] text-white/75 dark:text-stone-900/75">
+        <div className="flex flex-wrap items-center justify-between gap-3 font-sans-body text-xs uppercase tracking-[0.18em] text-white/75 dark:text-stone-900/75 sm:tracking-[0.22em]">
           <span>Estimated Total</span>
           <span>{itemCount} item(s)</span>
         </div>
-        <div className="mt-2 text-3xl font-semibold">{formatMoney(total)}</div>
+        <div className="mt-2 text-2xl font-semibold sm:text-3xl">{formatMoney(total)}</div>
       </div>
 
       <div className="mt-5 rounded-[26px] border border-white/10 bg-white/80 p-5 text-stone-700 dark:border-white/10 dark:bg-white/5 dark:text-stone-100">
@@ -84,7 +84,7 @@ export default function CartPanel({ cart, total, tableNumber, tableError, onTabl
           value={tableNumber}
           onChange={(event) => onTableNumberChange(event.target.value)}
           placeholder="Enter your table number"
-          className="mt-3 w-full rounded-[22px] border border-stone-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-nyota-bronze focus:ring-4 focus:ring-amber-200 dark:border-white/10 dark:bg-white/5 dark:text-stone-900 dark:focus:ring-amber-500/20"
+          className="mt-3 w-full rounded-[22px] border border-stone-200 bg-white px-4 py-3 text-sm text-stone-700 outline-none transition focus:border-nyota-bronze focus:ring-4 focus:ring-amber-200 dark:border-white/10 dark:bg-white/5 dark:text-stone-100 dark:focus:ring-amber-500/20"
         />
         {tableError ? <p className="mt-2 text-sm text-rose-600">{tableError}</p> : null}
       </div>

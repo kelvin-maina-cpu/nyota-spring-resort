@@ -41,12 +41,12 @@ export default function MealCard({ meal, onSelect, onUnavailable }) {
             <span className="status-pill bg-amber-300 text-stone-950">Chef&apos;s Special</span>
           ) : null}
         </div>
-        <div className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-4 text-white">
+        <div className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-3 text-white">
           <div>
             <p className="font-sans-body text-[11px] uppercase tracking-[0.28em] text-white/75">{meal.category}</p>
-            <h3 className="mt-2 text-2xl font-semibold">{meal.name}</h3>
+            <h3 className="mt-2 text-xl font-semibold leading-tight sm:text-2xl">{meal.name}</h3>
           </div>
-          <div className="rounded-full bg-white/15 px-3 py-2 font-sans-body text-xs font-semibold backdrop-blur-md">
+          <div className="shrink-0 rounded-full bg-white/15 px-3 py-2 font-sans-body text-xs font-semibold backdrop-blur-md">
             {meal.waitTime}
           </div>
         </div>
@@ -83,7 +83,7 @@ export default function MealCard({ meal, onSelect, onUnavailable }) {
           ))}
         </div>
 
-        <div className="flex items-center justify-between gap-4 pt-1">
+        <div className="flex flex-col gap-3 pt-1 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className={`font-sans-body text-sm font-medium ${
               disabled

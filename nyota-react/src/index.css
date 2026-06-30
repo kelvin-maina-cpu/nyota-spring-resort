@@ -17,11 +17,13 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   body {
     @apply bg-nyota-cream text-nyota-ink antialiased transition-colors duration-300;
     font-family: var(--font-serif-display);
+    overflow-x: hidden;
     background:
       radial-gradient(circle at top left, rgba(197, 155, 85, 0.16), transparent 28%),
       radial-gradient(circle at bottom right, rgba(22, 57, 47, 0.12), transparent 28%),
@@ -40,6 +42,11 @@
     @apply min-h-screen;
   }
 
+  img,
+  video {
+    @apply max-w-full;
+  }
+
   ::selection {
     @apply bg-nyota-gold/30 text-nyota-forest;
   }
@@ -47,7 +54,7 @@
 
 @layer components {
   .app-shell {
-    @apply relative overflow-hidden;
+    @apply relative min-w-0 overflow-hidden;
   }
 
   .app-shell::before,
@@ -65,27 +72,27 @@
   }
 
   .glass-surface {
-    @apply rounded-[28px] border border-white/50 bg-white/75 shadow-[0_24px_60px_rgba(18,34,28,0.12)] backdrop-blur-xl dark:border-white/10 dark:bg-white/5;
+    @apply min-w-0 rounded-[28px] border border-white/50 bg-white/80 shadow-[0_24px_60px_rgba(18,34,28,0.12)] backdrop-blur-xl dark:border-white/10 dark:bg-white/5;
   }
 
   .section-wrap {
-    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+    @apply mx-auto w-full min-w-0 max-w-7xl px-4 sm:px-6 lg:px-8;
   }
 
   .brand-kicker {
-    @apply font-sans-body text-[11px] uppercase tracking-[0.34em] text-nyota-bronze dark:text-nyota-sand/80;
+    @apply font-sans-body text-[10px] uppercase tracking-[0.22em] text-nyota-bronze dark:text-nyota-sand/80 sm:text-[11px] sm:tracking-[0.34em];
   }
 
   .pill-button {
-    @apply inline-flex items-center justify-center rounded-full px-5 py-3 font-sans-body text-sm font-semibold transition duration-200 hover:-translate-y-0.5;
+    @apply inline-flex min-h-11 items-center justify-center rounded-full px-4 py-3 text-center font-sans-body text-sm font-semibold leading-snug transition duration-200 hover:-translate-y-0.5 sm:px-5;
   }
 
   .pill-button-primary {
-    @apply inline-flex items-center justify-center rounded-full px-5 py-3 font-sans-body text-sm font-semibold transition duration-200 hover:-translate-y-0.5 bg-gradient-to-r from-nyota-gold to-[#d5b077] text-stone-950 shadow-[0_14px_36px_rgba(18,34,28,0.12)];
+    @apply inline-flex min-h-11 items-center justify-center rounded-full bg-gradient-to-r from-nyota-gold to-[#d5b077] px-4 py-3 text-center font-sans-body text-sm font-semibold leading-snug text-stone-950 shadow-[0_14px_36px_rgba(18,34,28,0.12)] transition duration-200 hover:-translate-y-0.5 sm:px-5;
   }
 
   .pill-button-secondary {
-    @apply inline-flex items-center justify-center rounded-full px-5 py-3 font-sans-body text-sm font-semibold transition duration-200 hover:-translate-y-0.5 border border-white/40 bg-white/65 text-stone-800 shadow-[0_14px_36px_rgba(18,34,28,0.08)] dark:border-white/10 dark:bg-white/6 dark:text-stone-100;
+    @apply inline-flex min-h-11 items-center justify-center rounded-full border border-stone-200 bg-white/80 px-4 py-3 text-center font-sans-body text-sm font-semibold leading-snug text-stone-800 shadow-[0_14px_36px_rgba(18,34,28,0.08)] transition duration-200 hover:-translate-y-0.5 dark:border-white/10 dark:bg-white/6 dark:text-stone-100 sm:px-5;
   }
 
   .nav-link {
@@ -97,7 +104,7 @@
   }
 
   .info-card {
-    @apply rounded-[28px] border border-white/50 bg-white/75 shadow-[0_24px_60px_rgba(18,34,28,0.12)] backdrop-blur-xl dark:border-white/10 dark:bg-white/5 p-5;
+    @apply min-w-0 rounded-[28px] border border-white/50 bg-white/80 p-5 shadow-[0_24px_60px_rgba(18,34,28,0.12)] backdrop-blur-xl dark:border-white/10 dark:bg-white/5;
   }
 
   .status-pill {
@@ -125,3 +132,14 @@
   }
 }
 
+@media (max-width: 640px) {
+  .section-wrap {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .glass-surface,
+  .info-card {
+    border-radius: 1.5rem;
+  }
+}

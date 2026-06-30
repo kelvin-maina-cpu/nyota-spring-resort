@@ -3,7 +3,7 @@ export default function SectionTitle({ eyebrow, title, copy, align = "between" }
     <div className={`mb-6 flex flex-col gap-4 ${align === "between" ? "lg:flex-row lg:items-end lg:justify-between" : ""}`}>
       <div>
         <p className="brand-kicker">{eyebrow}</p>
-        <h2 className="mt-2 text-4xl font-semibold text-nyota-forest dark:text-nyota-sand sm:text-5xl">
+        <h2 className="mt-2 text-3xl font-semibold leading-tight text-nyota-forest dark:text-nyota-sand sm:text-5xl">
           {title}
         </h2>
       </div>

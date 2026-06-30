@@ -19,7 +19,7 @@ export default function ContactPage() {
       <section className="section-wrap pt-6">
         <div className="glass-surface overflow-hidden bg-[linear-gradient(135deg,rgba(13,32,28,0.86),rgba(113,70,28,0.52)),url('/images/sarova 9.jpeg')] bg-cover bg-center p-8 text-white sm:p-10">
           <p className="brand-kicker text-white/75">Bookings & Inquiries</p>
-          <h1 className="mt-4 max-w-4xl text-5xl font-semibold leading-[0.95] sm:text-6xl">
+          <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-tight sm:text-6xl">
             Give guests a clear place to reach out.
           </h1>
           <p className="mt-5 max-w-3xl font-sans-body text-sm leading-8 text-white/82 sm:text-base">
@@ -32,7 +32,7 @@ export default function ContactPage() {
         <div className="space-y-6">
           <div className="info-card">
             <p className="brand-kicker">Contact Details</p>
-            <h2 className="mt-3 text-4xl font-semibold text-nyota-forest dark:text-nyota-sand">
+          <h2 className="mt-3 text-3xl font-semibold leading-tight text-nyota-forest dark:text-nyota-sand sm:text-4xl">
               We are here to help with your stay plans.
             </h2>
             <p className="mt-5 font-sans-body text-sm leading-8 text-stone-600 dark:text-stone-300 sm:text-base">
@@ -54,7 +54,7 @@ export default function ContactPage() {
 
           <div className="info-card">
             <p className="brand-kicker">Inquiry Form</p>
-            <h2 className="mt-3 text-4xl font-semibold text-nyota-forest dark:text-nyota-sand">
+            <h2 className="mt-3 text-3xl font-semibold leading-tight text-nyota-forest dark:text-nyota-sand sm:text-4xl">
               Send your stay inquiry.
             </h2>
             <p className="mt-5 font-sans-body text-sm leading-8 text-stone-600 dark:text-stone-300 sm:text-base">
