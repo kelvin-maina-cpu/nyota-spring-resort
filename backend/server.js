@@ -11,13 +11,19 @@ const defaultOrigins = [
   "http://127.0.0.1:5173",
   "http://localhost:5174",
   "http://127.0.0.1:5174",
+  "https://nyota-spring-resort.vercel.app",
 ]
-const allowedOrigins = process.env.ALLOWED_ORIGINS
+const configuredOrigins = process.env.ALLOWED_ORIGINS
   ? process.env.ALLOWED_ORIGINS.split(",").map((origin) => origin.trim()).filter(Boolean)
-  : defaultOrigins
+  : []
+const allowedOrigins = [...new Set([...defaultOrigins, ...configuredOrigins])]
 const server = http.createServer(app)
 const corsOptions = {
   origin(origin, callback) {
+    if (allowedOrigins.includes("*")) {
+      return callback(null, true)
+    }
+
     if (!origin || allowedOrigins.includes(origin)) {
       return callback(null, true)
     }
